@@ -17,12 +17,18 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/login', function () {
+Route::get('/frontend/login', function () {
     return view('frontend.login');
+});
+Route::get('frontend/register', function () {
+    return view('frontend.register');
 });
 
 Route::get('/', function () {
     return view('layouts.main');
+});
+Route::get('/', function () {
+    return view('layouts.main2');
 });
 
 Route::get('/admin/users', function () {

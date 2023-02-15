@@ -69,12 +69,13 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="/news" class="nav-link">News</a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="/admin/quiz-template" class="nav-link">Quiz Template</a>
+      <li class="nav-item">
+        <a class="nav-link disabled">Quiz Template</a>
       </li>
     </ul>
     </div>
-    <a href="/"><button type="button" class="btn btn-outline-danger" style="margin-right: 10px;">Log out</button></a>
+    <a href="/frontend/login"><button type="button" class="btn btn-outline-success" style="margin-right: 10px;">Login</button></a>
+    <a href="/frontend/register"><button type="button" class="btn btn-outline-danger">Register</button></a>
 
     <!-- Right navbar links -->
   </nav>
@@ -85,7 +86,7 @@
     <!-- Brand Logo -->
     <div class="brand-link">
       <img src='{{ asset("template/dist/img/icon-gaji.jpg") }}' alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">RECRUTIMENT</span>
+      <span class="brand-text font-weight-light">RECRUITMENT</span>
     </div>
 
     <!-- Sidebar -->
@@ -93,10 +94,10 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src='{{ asset("template/dist/img/Logo_UPH.gif") }}' class="img-circle elevation-2" alt="User Image">
+          <img src='{{ asset("template/dist/img/AdminLTELogo.png") }}' class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a class="d-block">KELOMPOK 3</a>
+          <a href="/" class="d-block">No user</a>
         </div>
       </div>
 
@@ -113,9 +114,7 @@
       </div>
 
       <!-- Sidebar Menu -->
-      <nav class="mt-2">
-           @include("layouts.sidebar") 
-      </nav>
+      
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
@@ -127,53 +126,13 @@
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-7">
-            <h1 style="margin-left: 70%">RECRUITMENT</h1>
-          </div><!-- /.col -->
+            <h1 style="margin: 10% 0 0 25%; font-size:75pt;">RECRUITMENT</h1>
+            <!-- /.col -->
           <!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <!-- Small boxes (Stat box) -->
- 
-        <!-- /.row -->
-        <!-- Main row -->
-        <div class="row">
-          <!-- Left col -->
-          <section class="col-lg-12 connectedSortable">
-            <!-- Custom tabs (Charts with tabs)-->
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">
-                  <i class="fas fa-chart-pie mr-1"></i>
-                  @yield('header')
-                </h3>
-                <div class="card-tools">
-                  
-                </div>
-              </div><!-- /.card-header -->
-              <div class="card-body">
-                @yield('container')
-                
-              </div><!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-            <!-- /.card -->
-          </section>
-          <!-- /.Left col -->
-          <!-- right col (We are only adding the ID to make the widgets sortable)-->
-     
-          <!-- right col -->
-        </div>
-        <!-- /.row (main row) -->
-      </div><!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
   </div>
 
   <!-- Control Sidebar -->

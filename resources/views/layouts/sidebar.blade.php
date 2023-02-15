@@ -10,17 +10,17 @@
             </a>
         </li>';
 
-        $Quiz_Menu = '
-        <li class="nav-item">
-            <a href="/admin/quiz-template" class="nav-link">
-                <i class="nav-icon fas fa-user-alt"></i>
-                <p>
-                Quiz Template
-                </p>
-            </a>
-        </li>';
+        // $Quiz_Menu = '
+        // <li class="nav-item">
+        //     <a href="/admin/quiz-template" class="nav-link">
+        //         <i class="nav-icon fas fa-user-alt"></i>
+        //         <p>
+        //         Quiz Template
+        //         </p>
+        //     </a>
+        // </li>';
 
         echo $User_Menu;
-        echo $Quiz_Menu;
+        // echo $Quiz_Menu;
     ?>
 </ul>

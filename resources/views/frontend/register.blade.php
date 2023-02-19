@@ -13,6 +13,7 @@
     <title>Register</title>
 </head>
 <body>
+    <form method="GET" action="{{ url('/register/create') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
     <section class="vh-100">
         <div class="container-fluid h-custom">
           <div class="row d-flex justify-content-center align-items-center h-100">
@@ -22,28 +23,36 @@
             </div>
             <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
               <form>
+
+                <!-- Name input -->
+                <div class="form-outline mb-4">
+                  <input type="text" name="user_name" id="user_name" class="form-control form-control-lg"
+                    placeholder="Enter a name" required/>
+                  <label class="form-label" for="user_name">Name</label>
+                </div>
+
                 <!-- Email input -->
                 <div class="form-outline mb-4">
-                  <input type="email" id="form3Example3" class="form-control form-control-lg"
-                    placeholder="Enter a valid email address" />
-                  <label class="form-label" for="form3Example3">Email address</label>
+                  <input type="email" name="email" id="email" class="form-control form-control-lg"
+                    placeholder="Enter a valid email address" required />
+                  <label class="form-label" for="email">Email address</label>
                 </div>
       
                 <!-- Password input -->
                 <div class="form-outline mb-3">
-                  <input type="password" id="form3Example4" class="form-control form-control-lg"
-                    placeholder="Enter password" />
-                  <label class="form-label" for="form3Example4">New Password</label>
+                  <input type="password" name="password" id="password" class="form-control form-control-lg"
+                    placeholder="Enter password" required/>
+                  <label class="form-label" for="password">New Password</label>
                 </div>
                 <div class="form-outline mb-3">
-                  <input type="password" id="form3Example4" class="form-control form-control-lg"
-                    placeholder="Enter password" />
-                  <label class="form-label" for="form3Example4">Re-type New Password</label>
+                  <input type="password" name="password_confirmation" id="password_confirmation" class="form-control form-control-lg"
+                    placeholder="Enter password" required/>
+                  <label class="form-label" for="password_confirmation">Re-type New Password</label>
                 </div>
       
                 <div class="text-center text-lg-start mt-4 pt-2">
-                  <button type="button" class="btn btn-primary btn-lg"
-                    style="padding-left: 2.5rem; padding-right: 2.5rem;">Register</button>
+                  <input type="submit" class="btn btn-primary btn-lg" value="Register"
+                    style="padding-left: 2.5rem; padding-right: 2.5rem;">
                 </div>
       
               </form>
@@ -51,5 +60,6 @@
           </div>
         </div>
       </section>
+    </form>
 </body>
 </html>

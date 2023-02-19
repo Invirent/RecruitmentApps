@@ -1,3 +1,27 @@
+<?php
+    use Illuminate\Support\Facades\DB;
+    $jobs = DB::table('jobs')->get()->where('id', $candidate->job_id);
+
+    $url_base = Config::get('app.url', 'http://localhost:8000');
+    $url = $url_base . '/candidate?access_key=' . $candidate->access_key;
+
+?>
+
+<script>
+    function copyLink() {
+    // Get the text field
+    var copyText = document.getElementById("url_value");
+    // Select the text field
+    copyText.select();
+  
+     // Copy the text inside the text field
+    navigator.clipboard.writeText(copyText.value);
+  
+    // Alert the copied text
+    alert("Copied the text: " + copyText.value);
+  } 
+</script>
+
 @extends('layouts.main')
 
 @section('container')
@@ -12,6 +36,8 @@
 
                         <a href="{{ url('/admin/candidates') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <a href="{{ url('/admin/candidates/' . $candidate->id . '/edit') }}" title="Edit Candidate"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                        <input type="hidden" id="url_value" value="{{ $url }}">
+                        <button class="btn btn-success btn-sm" onclick="copyLink()"><i class="fa fa-clipboard"></i> Copy URL</button>
 
                         <form method="POST" action="{{ url('admin/candidates' . '/' . $candidate->id) }}" accept-charset="UTF-8" style="display:inline">
                             {{ method_field('DELETE') }}
@@ -25,9 +51,37 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <th>ID</th><td>{{ $candidate->id }}</td>
+                                        <th> Name </th>
+                                        <td> {{ $candidate->name }} </td>
                                     </tr>
-                                    <tr><th> Name </th><td> {{ $candidate->name }} </td></tr><tr><th> Age </th><td> {{ $candidate->age }} </td></tr><tr><th> Gender </th><td> {{ $candidate->gender }} </td></tr>
+                                    <tr>
+                                        <th> Age </th>
+                                        <td> {{ $candidate->age }} </td>
+                                    </tr>
+                                    <tr>
+                                        <th> Gender </th>
+                                        <td> {{ $candidate->gender }} </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Birth Date</th>
+                                        <td> {{ $candidate->birthdate }} </td>
+                                    </tr>
+                                    <tr>
+                                        <th> Email </th>
+                                        <td> {{ $candidate->email }} </td>
+                                    </tr>
+                                    <tr>
+                                        <th> Phone </th>
+                                        <td> {{ $candidate->phone_number }} </td>
+                                    </tr>
+                                    <tr>
+                                        <th> Jobs </th>
+                                        <td> 
+                                            @foreach($jobs as $job)
+                                                {{ $job->job_name }}
+                                            @endforeach
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>

@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,19 +19,56 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/frontend/login', function () {
+Route::get('/login', function () {
     return view('frontend.login');
 });
-Route::get('frontend/register', function () {
+
+Route::get('/login/verify', function(){
+    $email = $_GET['email'];
+    $password = $_GET['password'];
+    $user = User::where("email", $email)->first();
+    if($user){
+        if($user->password == $password){
+            $_SESSION['user'] = $user;
+            return redirect("/admin/users");
+        }
+        else{
+            return redirect("/login") -> with("error", "Password does not match");
+        }
+    }
+    else{
+        return redirect("/login") -> with("error", "User does not exist");
+    }
+});
+
+Route::get('/register', function () {
     return view('frontend.register');
+});
+Route::get("/register/create", function(){
+    $name = $_GET['user_name'];
+    $email = $_GET['email'];
+    $password = $_GET['password'];
+    $password_confirmation = $_GET['password_confirmation'];
+
+    if($password != $password_confirmation){
+        return redirect("/register") -> with("error", "Password does not match");
+    }
+    else{
+        $user = new User();
+        $user->name = $name;
+        $user->email = $email;
+        $user->password = $password;
+        $user->save();
+        return redirect("/login");
+    }
 });
 
 Route::get('/', function () {
     return view('layouts.main');
 });
-Route::get('/', function () {
-    return view('layouts.main2');
-});
+// Route::get('/', function () {
+//     return view('layouts.main2');
+// });
 
 Route::get('/admin/users', function () {
     return view('admin.users');
@@ -39,8 +78,6 @@ Route::resource('admin/users', 'App\\Http\\Controllers\\Admin\UsersController');
 Route::resource('admin/quiz-template', 'App\\Http\\Controllers\\Admin\QuizTemplateController');
 Route::resource('admin/quizzes', 'App\\Http\\Controllers\\Admin\QuizzesController');
 Route::resource('admin/quiz-answer', 'App\\Http\\Controllers\\Admin\QuizAnswerController');
-Route::resource('admin/quizzes', 'App\\Http\\Controllers\\Admin\QuizzesController');
-Route::resource('admin/quizzes', 'App\\Http\\Controllers\\Admin\QuizzesController');
-Route::resource('admin/quiz-answer', 'App\\Http\\Controllers\\Admin\QuizAnswerController');
 Route::resource('admin/candidates', 'App\\Http\\Controllers\\Admin\CandidatesController');
-Route::resource('admin/candidates', 'App\\Http\\Controllers\\Admin\CandidatesController');
+Route::resource('admin/jobs', 'App\\Http\\Controllers\\Admin\JobsController');
+Route::resource('admin/candidates-answers', 'App\\Http\\Controllers\\Admin\CandidatesAnswersController');

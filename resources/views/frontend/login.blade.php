@@ -1,4 +1,14 @@
 <?php
+  use Illuminate\Support\Facades\DB;
+
+  $UserData = DB::table('users')->get();
+
+  $count = count($UserData);
+
+  if ($count == 0){
+    header('Location: /register');
+    exit();
+  }
 
 ?>
 
@@ -13,6 +23,7 @@
     <title>Login</title>
 </head>
 <body>
+    <form method="GET" action="{{ url('/login/verify') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
     <section class="vh-100">
         <div class="container-fluid h-custom">
           <div class="row d-flex justify-content-center align-items-center h-100">
@@ -24,32 +35,31 @@
               <form>
                 <!-- Email input -->
                 <div class="form-outline mb-4">
-                  <input type="email" id="form3Example3" class="form-control form-control-lg"
+                  <input type="email" name="email" id="email" class="form-control form-control-lg"
                     placeholder="Enter a valid email address" />
-                  <label class="form-label" for="form3Example3">Email address</label>
+                  <label class="form-label" for="email">Email address</label>
                 </div>
       
                 <!-- Password input -->
                 <div class="form-outline mb-3">
-                  <input type="password" id="form3Example4" class="form-control form-control-lg"
+                  <input type="password" name="password" id="password" class="form-control form-control-lg"
                     placeholder="Enter password" />
-                  <label class="form-label" for="form3Example4">Password</label>
+                  <label class="form-label" for="password">Password</label>
                 </div>
       
-                <div class="d-flex justify-content-between align-items-center">
+                {{-- <div class="d-flex justify-content-between align-items-center">
                   <!-- Checkbox -->
                   <div class="form-check mb-0">
-                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
-                    <label class="form-check-label" for="form2Example3">
+                    <input class="form-check-input me-2" type="checkbox" value="" id="remember_me" />
+                    <label class="form-check-label" for="remember_me">
                       Remember me
                     </label>
                   </div>
-                  <a href="#!" class="text-body">Forgot password?</a>
-                </div>
+                </div> --}}
       
                 <div class="text-center text-lg-start mt-4 pt-2">
-                  <button type="button" class="btn btn-primary btn-lg"
-                    style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+                  <input type="submit" class="btn btn-primary btn-lg" value="Login"
+                    style="padding-left: 2.5rem; padding-right: 2.5rem;">
                 </div>
       
               </form>
@@ -57,5 +67,6 @@
           </div>
         </div>
       </section>
+    </form>
 </body>
 </html>

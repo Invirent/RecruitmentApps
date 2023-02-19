@@ -1,13 +1,18 @@
 <?php
+  use Illuminate\Support\Facades\DB;
+    $UserData = DB::table('users')->get();
 
-  use App\Models\User;
+    $count = count($UserData);
+  if ($count == 0){
+      header('Location: /register');
+      exit();
+  }
 
   $session = session()->get('user');
-  
-  // if ($session == ''){
-  //   header('Location: /login');
-  //   exit();
-  // }
+  if ($session == ''){
+    header('Location: /login');
+    exit();
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -185,7 +190,7 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src='{{ asset("template/plugins/jquery/jquery.min.js") }}'></script>
+<script src='{{ asset("template/plugins/jquery/jquery.min.js") }}'></>
 <!-- jQuery UI 1.11.4 -->
 <script src='{{ asset("template/plugins/jquery-ui/jquery-ui.min.js") }}'></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->

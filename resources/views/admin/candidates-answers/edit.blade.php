@@ -1,7 +1,3 @@
-<?php
-    $template_id = $_GET['template_id'] | "";
-?>
-
 @extends('layouts.main')
 
 @section('container')
@@ -11,9 +7,9 @@
 
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">Create New Quiz</div>
+                    <div class="card-header">Edit Candidates Answer #{{ $candidatesanswer->id }}</div>
                     <div class="card-body">
-                        <a href="{{ url('/admin/quiz-template/'. (isset($quiz->template_id) ? $quiz->template_id : $template_id)) }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        <a href="{{ url('/admin/candidates-answers') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <br />
                         <br />
 
@@ -25,10 +21,11 @@
                             </ul>
                         @endif
 
-                        <form method="POST" action="{{ url('/admin/quizzes') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                        <form method="POST" action="{{ url('/admin/candidates-answers/' . $candidatesanswer->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                            {{ method_field('PATCH') }}
                             {{ csrf_field() }}
 
-                            @include ('admin.quizzes.form', ['formMode' => 'create'])
+                            @include ('admin.candidates-answers.form', ['formMode' => 'edit'])
 
                         </form>
 

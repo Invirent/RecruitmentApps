@@ -1,3 +1,11 @@
+<?php
+    use Illuminate\Support\Facades\DB;
+    $Jobs = DB::table('jobs')->get();
+    $Jobs = $Jobs->pluck('job_name', 'id');
+    $Jobs = $Jobs->toArray();
+    $Jobs = array('' => 'Select Template') + $Jobs;
+?>
+
 <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
     <label for="name" class="control-label">{{ 'Name' }}</label>
     <input class="form-control" name="name" type="text" id="name" value="{{ isset($candidate->name) ? $candidate->name : ''}}" >
@@ -11,10 +19,10 @@
 <div class="form-group {{ $errors->has('gender') ? 'has-error' : ''}}">
     <label for="gender" class="control-label">{{ 'Gender' }}</label>
     <div class="radio">
-    <label><input name="gender" type="radio" value="1" {{ (isset($candidate) && 1 == $candidate->gender) ? 'checked' : '' }}> Yes</label>
+    <label><input name="gender" type="radio" value="Male" {{ (isset($candidate) && 1 == $candidate->gender) ? 'checked' : '' }}> Male</label>
 </div>
 <div class="radio">
-    <label><input name="gender" type="radio" value="0" @if (isset($candidate)) {{ (0 == $candidate->gender) ? 'checked' : '' }} @else {{ 'checked' }} @endif> No</label>
+    <label><input name="gender" type="radio" value="Female" @if (isset($candidate)) {{ (0 == $candidate->gender) ? 'checked' : '' }} @else {{ 'checked' }} @endif> Female</label>
 </div>
     {!! $errors->first('gender', '<p class="help-block">:message</p>') !!}
 </div>
@@ -34,8 +42,8 @@
     {!! $errors->first('email', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('job_id') ? 'has-error' : ''}}">
-    <label for="job_id" class="control-label">{{ 'Job Id' }}</label>
-    <input class="form-control" name="job_id" type="number" id="job_id" value="{{ isset($candidate->job_id) ? $candidate->job_id : ''}}" >
+    <label for="job_id" class="control-label">{{ 'Jobs' }}</label>
+    {!! Form::select('job_id', $Jobs, null, ['class' => 'form-control']) !!}
     {!! $errors->first('job_id', '<p class="help-block">:message</p>') !!}
 </div>
 

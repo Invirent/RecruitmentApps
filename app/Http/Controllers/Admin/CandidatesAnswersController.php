@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
-use App\Models\Candidate;
+use App\Models\CandidatesAnswer;
 use Illuminate\Http\Request;
 
-class CandidatesController extends Controller
+class CandidatesAnswersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,19 +21,17 @@ class CandidatesController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $candidates = Candidate::where('name', 'LIKE', "%$keyword%")
-                ->orWhere('age', 'LIKE', "%$keyword%")
-                ->orWhere('gender', 'LIKE', "%$keyword%")
-                ->orWhere('birthdate', 'LIKE', "%$keyword%")
-                ->orWhere('phone_number', 'LIKE', "%$keyword%")
-                ->orWhere('email', 'LIKE', "%$keyword%")
-                ->orWhere('job_id', 'LIKE', "%$keyword%")
+            $candidatesanswers = CandidatesAnswer::where('candidate_id', 'LIKE', "%$keyword%")
+                ->orWhere('quiz_id', 'LIKE', "%$keyword%")
+                ->orWhere('answer_choose_id', 'LIKE', "%$keyword%")
+                ->orWhere('scored_answer', 'LIKE', "%$keyword%")
+                ->orWhere('is_correct_answer', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
-            $candidates = Candidate::latest()->paginate($perPage);
+            $candidatesanswers = CandidatesAnswer::latest()->paginate($perPage);
         }
 
-        return view('admin.candidates.index', compact('candidates'));
+        return view('admin.candidates-answers.index', compact('candidatesanswers'));
     }
 
     /**
@@ -43,7 +41,7 @@ class CandidatesController extends Controller
      */
     public function create()
     {
-        return view('admin.candidates.create');
+        return view('admin.candidates-answers.create');
     }
 
     /**
@@ -55,15 +53,12 @@ class CandidatesController extends Controller
      */
     public function store(Request $request)
     {
-
-        $key = bin2hex(random_bytes(32));
+        
         $requestData = $request->all();
+        
+        CandidatesAnswer::create($requestData);
 
-        $requestData['access_key'] = $key;
-
-        Candidate::create($requestData);
-
-        return redirect('admin/candidates')->with('flash_message', 'Candidate added!');
+        return redirect('admin/candidates-answers')->with('flash_message', 'CandidatesAnswer added!');
     }
 
     /**
@@ -75,9 +70,9 @@ class CandidatesController extends Controller
      */
     public function show($id)
     {
-        $candidate = Candidate::findOrFail($id);
+        $candidatesanswer = CandidatesAnswer::findOrFail($id);
 
-        return view('admin.candidates.show', compact('candidate'));
+        return view('admin.candidates-answers.show', compact('candidatesanswer'));
     }
 
     /**
@@ -89,9 +84,9 @@ class CandidatesController extends Controller
      */
     public function edit($id)
     {
-        $candidate = Candidate::findOrFail($id);
+        $candidatesanswer = CandidatesAnswer::findOrFail($id);
 
-        return view('admin.candidates.edit', compact('candidate'));
+        return view('admin.candidates-answers.edit', compact('candidatesanswer'));
     }
 
     /**
@@ -107,10 +102,10 @@ class CandidatesController extends Controller
         
         $requestData = $request->all();
         
-        $candidate = Candidate::findOrFail($id);
-        $candidate->update($requestData);
+        $candidatesanswer = CandidatesAnswer::findOrFail($id);
+        $candidatesanswer->update($requestData);
 
-        return redirect('admin/candidates')->with('flash_message', 'Candidate updated!');
+        return redirect('admin/candidates-answers')->with('flash_message', 'CandidatesAnswer updated!');
     }
 
     /**
@@ -122,8 +117,8 @@ class CandidatesController extends Controller
      */
     public function destroy($id)
     {
-        Candidate::destroy($id);
+        CandidatesAnswer::destroy($id);
 
-        return redirect('admin/candidates')->with('flash_message', 'Candidate deleted!');
+        return redirect('admin/candidates-answers')->with('flash_message', 'CandidatesAnswer deleted!');
     }
 }

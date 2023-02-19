@@ -55,9 +55,9 @@ class QuizAnswerController extends Controller
         
         $requestData = $request->all();
         
-        QuizAnswer::create($requestData);
+        $quizanswer = QuizAnswer::create($requestData);
 
-        return redirect('admin/quiz-answer')->with('flash_message', 'QuizAnswer added!');
+        return redirect('admin/quizzes/'.$quizanswer->quiz_id)->with('flash_message', 'QuizAnswer added!');
     }
 
     /**
@@ -104,7 +104,7 @@ class QuizAnswerController extends Controller
         $quizanswer = QuizAnswer::findOrFail($id);
         $quizanswer->update($requestData);
 
-        return redirect('admin/quiz-answer')->with('flash_message', 'QuizAnswer updated!');
+        return redirect('admin/quizzes/'.$quizanswer->quiz_id)->with('flash_message', 'QuizAnswer updated!');
     }
 
     /**

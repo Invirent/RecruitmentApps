@@ -1,3 +1,7 @@
+<?php
+    $template_id = $_GET['template_id'] | "";
+?>
+
 <div class="form-group {{ $errors->has('sequence') ? 'has-error' : ''}}">
     <label for="sequence" class="control-label">{{ 'Sequence' }}</label>
     <input class="form-control" name="sequence" type="number" id="sequence" value="{{ isset($quiz->sequence) ? $quiz->sequence : ''}}" >
@@ -28,11 +32,8 @@
 </div>
     {!! $errors->first('is_scored_answer', '<p class="help-block">:message</p>') !!}
 </div>
-<div class="form-group {{ $errors->has('template_id') ? 'has-error' : ''}}">
-    <label for="template_id" class="control-label">{{ 'Template Id' }}</label>
-    <input class="form-control" name="template_id" type="number" id="template_id" value="{{ isset($quiz->template_id) ? $quiz->template_id : ''}}" >
-    {!! $errors->first('template_id', '<p class="help-block">:message</p>') !!}
-</div>
+<input class="form-control" name="template_id" type="hidden" id="template_id" value="{{ isset($quiz->template_id) ? $quiz->template_id : $template_id}}" >
+
 
 
 <div class="form-group">

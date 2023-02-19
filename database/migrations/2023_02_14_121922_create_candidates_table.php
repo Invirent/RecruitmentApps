@@ -19,9 +19,10 @@ class CreateCandidatesTable extends Migration
             $table->integer('age')->nullable();
             $table->string('gender');
             $table->date('birthdate')->nullable();
-            $table->integer('phone_number')->nullable();
+            $table->string('phone_number')->nullable();
             $table->string('email')->nullable();
             $table->integer('job_id')->nullable()->unsigned();
+            $table->string('access_key')->nullable();
             });
     }
 

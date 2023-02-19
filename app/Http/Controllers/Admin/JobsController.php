@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
-use App\Models\Candidate;
+use App\Models\Job;
 use Illuminate\Http\Request;
 
-class CandidatesController extends Controller
+class JobsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,19 +21,14 @@ class CandidatesController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $candidates = Candidate::where('name', 'LIKE', "%$keyword%")
-                ->orWhere('age', 'LIKE', "%$keyword%")
-                ->orWhere('gender', 'LIKE', "%$keyword%")
-                ->orWhere('birthdate', 'LIKE', "%$keyword%")
-                ->orWhere('phone_number', 'LIKE', "%$keyword%")
-                ->orWhere('email', 'LIKE', "%$keyword%")
-                ->orWhere('job_id', 'LIKE', "%$keyword%")
+            $jobs = Job::where('job_name', 'LIKE', "%$keyword%")
+                ->orWhere('default_template_id', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
-            $candidates = Candidate::latest()->paginate($perPage);
+            $jobs = Job::latest()->paginate($perPage);
         }
 
-        return view('admin.candidates.index', compact('candidates'));
+        return view('admin.jobs.index', compact('jobs'));
     }
 
     /**
@@ -43,7 +38,7 @@ class CandidatesController extends Controller
      */
     public function create()
     {
-        return view('admin.candidates.create');
+        return view('admin.jobs.create');
     }
 
     /**
@@ -55,15 +50,12 @@ class CandidatesController extends Controller
      */
     public function store(Request $request)
     {
-
-        $key = bin2hex(random_bytes(32));
+        
         $requestData = $request->all();
+        
+        Job::create($requestData);
 
-        $requestData['access_key'] = $key;
-
-        Candidate::create($requestData);
-
-        return redirect('admin/candidates')->with('flash_message', 'Candidate added!');
+        return redirect('admin/jobs')->with('flash_message', 'Job added!');
     }
 
     /**
@@ -75,9 +67,9 @@ class CandidatesController extends Controller
      */
     public function show($id)
     {
-        $candidate = Candidate::findOrFail($id);
+        $job = Job::findOrFail($id);
 
-        return view('admin.candidates.show', compact('candidate'));
+        return view('admin.jobs.show', compact('job'));
     }
 
     /**
@@ -89,9 +81,9 @@ class CandidatesController extends Controller
      */
     public function edit($id)
     {
-        $candidate = Candidate::findOrFail($id);
+        $job = Job::findOrFail($id);
 
-        return view('admin.candidates.edit', compact('candidate'));
+        return view('admin.jobs.edit', compact('job'));
     }
 
     /**
@@ -107,10 +99,10 @@ class CandidatesController extends Controller
         
         $requestData = $request->all();
         
-        $candidate = Candidate::findOrFail($id);
-        $candidate->update($requestData);
+        $job = Job::findOrFail($id);
+        $job->update($requestData);
 
-        return redirect('admin/candidates')->with('flash_message', 'Candidate updated!');
+        return redirect('admin/jobs')->with('flash_message', 'Job updated!');
     }
 
     /**
@@ -122,8 +114,8 @@ class CandidatesController extends Controller
      */
     public function destroy($id)
     {
-        Candidate::destroy($id);
+        Job::destroy($id);
 
-        return redirect('admin/candidates')->with('flash_message', 'Candidate deleted!');
+        return redirect('admin/jobs')->with('flash_message', 'Job deleted!');
     }
 }

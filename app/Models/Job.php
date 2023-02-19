@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Candidate extends Model
+class Job extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'candidates';
+    protected $table = 'jobs';
 
     /**
     * The database primary key value.
@@ -25,7 +25,7 @@ class Candidate extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'age', 'gender', 'birthdate', 'phone_number', 'email', 'job_id', 'access_key'];
+    protected $fillable = ['job_name', 'default_template_id'];
 
     
 }

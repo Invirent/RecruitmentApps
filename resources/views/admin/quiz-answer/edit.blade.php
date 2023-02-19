@@ -1,3 +1,6 @@
+<?php
+    $quiz_id = $_GET['quiz_id'] | "";
+?>
 @extends('layouts.main')
 
 @section('container')
@@ -7,9 +10,9 @@
 
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">Edit QuizAnswer #{{ $quizanswer->id }}</div>
+                    <div class="card-header">Edit Answer #{{ $quizanswer->id }}</div>
                     <div class="card-body">
-                        <a href="{{ url('/admin/quiz-answer') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        <a href="{{ url('/admin/quizzes/'.(isset($quizanswer->quiz_id) ? $quizanswer->quiz_id : $quiz_id)) }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <br />
                         <br />
 

@@ -56,9 +56,9 @@ class QuizzesController extends Controller
         
         $requestData = $request->all();
         
-        Quiz::create($requestData);
+        $quiz = Quiz::create($requestData);
 
-        return redirect('admin/quizzes')->with('flash_message', 'Quiz added!');
+        return redirect(('admin/quiz-template/'.$quiz->template_id))->with('flash_message', 'Quiz added!');
     }
 
     /**
@@ -105,7 +105,9 @@ class QuizzesController extends Controller
         $quiz = Quiz::findOrFail($id);
         $quiz->update($requestData);
 
-        return redirect('admin/quizzes')->with('flash_message', 'Quiz updated!');
+
+
+        return redirect(('admin/quiz-template/'.$quiz->template_id))->with('flash_message', 'Quiz updated!');
     }
 
     /**

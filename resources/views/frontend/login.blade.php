@@ -1,5 +1,6 @@
 <?php
   use Illuminate\Support\Facades\DB;
+  session_start();
 
   $UserData = DB::table('users')->get();
 

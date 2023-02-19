@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -33,11 +33,13 @@ Route::get('/login/verify', function(){
             return redirect("/admin/users");
         }
         else{
-            return redirect("/login") -> with("error", "Password does not match");
+            $_SESSION["error"] = ["message" => "Password does not match"];
+            return redirect("/login");
         }
     }
     else{
-        return redirect("/login") -> with("error", "User does not exist");
+        $_SESSION["error"] = ["message" => "User does not exist"];
+        return redirect("/login");
     }
 });
 
@@ -45,13 +47,14 @@ Route::get('/register', function () {
     return view('frontend.register');
 });
 Route::get("/register/create", function(){
-    $name = $_GET['user_name'];
+    $name = $_GET['name'];
     $email = $_GET['email'];
     $password = $_GET['password'];
     $password_confirmation = $_GET['password_confirmation'];
 
     if($password != $password_confirmation){
-        return redirect("/register") -> with("error", "Password does not match");
+        $_SESSION["error"] = ["message" => "Password does not match"];
+        return redirect("/register");
     }
     else{
         $user = new User();

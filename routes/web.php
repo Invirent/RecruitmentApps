@@ -50,7 +50,7 @@ Route::get('/register', function () {
     return view('frontend.register');
 });
 Route::get("/register/create", function(){
-    $name = $_GET['name'];
+    $name = $_GET['user_name'];
     $email = $_GET['email'];
     $password = $_GET['password'];
     $password_confirmation = $_GET['password_confirmation'];

@@ -5,6 +5,26 @@
     $url_base = Config::get('app.url', 'http://localhost:8000');
     $url = $url_base . '/candidate?access_key=' . $candidate->access_key;
 
+    $CandidateAnswer = DB::select(
+        'SELECT 
+            al.id as id,
+            al.candidate_id as candidate_id,
+            al.quiz_id as quiz_id,
+            al.answer_choose_id as answer_choose_id,
+            quiz.sequence as sequence,
+            quiz.question as question,
+            quiz.is_scored_answer as is_scored_answer,
+            answer.answer as answer,
+            answer.is_correct as is_correct
+        FROM candidates_answers al 
+        LEFT JOIN quizzes quiz ON al.quiz_id = quiz.id
+        LEFT JOIN quiz_answers answer ON al.answer_choose_id = answer.id
+        where al.candidate_id = ?
+        ORDER BY quiz.sequence ASC
+        ',
+        [$candidate->id]
+    );
+
 ?>
 
 <script>
@@ -84,8 +104,26 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            <h6>Answers</h6>
+                            <table class="table">
+                                <tr>
+                                    <th>Question</th>
+                                    <th>Answer</th>
+                                    <th>Correct</th>
+                                </tr>
+                                @foreach($CandidateAnswer as $answer)
+                                    <tr>
+                                        <td>{{ $answer->question }}</td>
+                                        <td>{{ $answer->answer }}</td>
+                                        @if($answer->is_scored_answer == 1)
+                                            <td><input type="checkbox" value="{{ ($answer->is_correct) }}" disabled></td>
+                                        @else
+                                            <td><input type="checkbox" value="0" disabled></td>
+                                        @endif
+                                    </tr>
+                                @endforeach
+                            </table>
                         </div>
-
                     </div>
                 </div>
             </div>

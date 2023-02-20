@@ -1,11 +1,15 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use Illuminate\Support\Facades\DB;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
 use App\Models\Candidate;
+use App\Models\Quiz;
+use App\Models\QuizAnswer;
+
 use Illuminate\Http\Request;
 
 class CandidatesController extends Controller
@@ -125,5 +129,41 @@ class CandidatesController extends Controller
         Candidate::destroy($id);
 
         return redirect('admin/candidates')->with('flash_message', 'Candidate deleted!');
+    }
+
+    public static function storeAnswer(Request $request){
+        $access_key = $request->get('access_key');
+        $candidate = DB::table('candidates')->get()->where('access_key', $access_key)->first();
+        $CandidateQuiz = DB::select('
+            SELECT 
+                quiz.id as id
+            FROM quizzes quiz
+            LEFT JOIN quiz_templates template ON quiz.template_id = template.id
+            LEFT JOIN jobs job ON template.id = job.default_template_id
+            WHERE job.id = ?
+            ORDER BY quiz.sequence ASC
+        ', [$candidate->job_id]);
+        foreach ($CandidateQuiz as $value) {
+            $quiz_id = $value->id;
+            $key = 'quiz_'.$quiz_id;
+            $selected_answer = $request->get($key);
+            
+            $is_scored_answer = Quiz::get()->where("id", $quiz_id)->first()->is_scored_answer;
+            $answer_status = 0;
+            if($is_scored_answer == 1){
+                $answer_status = QuizAnswer::get()->where("id", $selected_answer)->first()->is_correct_answer ?? 0;
+            }
+            DB::table('candidates_answers')->insert([
+                'candidate_id' => $candidate->id,
+                'quiz_id' => $quiz_id,
+                'answer_choose_id' => $selected_answer,
+                'scored_answer' => $is_scored_answer,
+                'is_correct_answer' => $answer_status,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]);
+        };
+        $_SESSION["submitted"] = true;
+        return redirect('/submitted') ->with('flash_message', 'Candidate answer submitted!');
     }
 }

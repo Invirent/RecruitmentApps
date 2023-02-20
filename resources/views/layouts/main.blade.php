@@ -1,5 +1,4 @@
 <?php
-  session_start();
   use Illuminate\Support\Facades\DB;
     $UserData = DB::table('users')->get();
 
@@ -9,8 +8,7 @@
       exit();
   }
 
-  $session = session()->get('user');
-  if ($session == ''){
+  if (!isset($_SESSION['user']) || $_SESSION['user'] == null){
     header('Location: /login');
     exit();
   }

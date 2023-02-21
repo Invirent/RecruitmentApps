@@ -18,118 +18,98 @@
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Ionicons -->  
+  <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <!-- Font Awesome -->
   <link rel="stylesheet" href='{{ asset("template/plugins/fontawesome-free/css/all.min.css") }}'>
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Tempusdominus Bootstrap 4 -->
-  <link rel="stylesheet" href='{{ asset("template/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css") }}'>
-  <!-- iCheck -->
-  <link rel="stylesheet" href='{{ asset("template/plugins/icheck-bootstrap/icheck-bootstrap.min.css") }}'>
-  <!-- JQVMap -->
-  <link rel="stylesheet" href='{{ asset("template/plugins/jqvmap/jqvmap.min.css") }}'>
-  <!-- Theme style -->
-  <link rel="stylesheet" href='{{ asset("template/dist/css/adminlte.min.css") }}'>
-  <!-- overlayScrollbars -->
-  <link rel="stylesheet" href='{{ asset("template/plugins/overlayScrollbars/css/OverlayScrollbars.min.css") }}'>
-  <!-- Daterange picker -->
-  <link rel="stylesheet" href='{{ asset("template/plugins/daterangepicker/daterangepicker.css") }}'>
-  <!-- summernote -->
-  <link rel="stylesheet" href='{{ asset("template/plugins/summernote/summernote-bs4.min.css") }}'>
-  <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <style>
+    footer {
+      text-align: center;
+      background-color: black;
+      color: white;
+    }
+  </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-
-  <!-- Preloader -->
-  <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src='{{ asset("template/dist/img/AdminLTELogo.png") }}' alt="AdminLTELogo" height="60" width="60">
-  </div>
-
-  <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
-    <div style="margin: 0 0 0 55%;">
-    <ul class="navbar-nav">
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="/home" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="/about" class="nav-link">About</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="/company" class="nav-link">Company</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="/jobs" class="nav-link">Jobs</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="/blog" class="nav-link">Blog</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="/news" class="nav-link">News</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled">Quiz Template</a>
-      </li>
-    </ul>
+    <div style="margin: 0 0 0 80%;">
+      <a href="/login"><button type="button" class="btn btn-outline-success" style="margin-right: 10px;">Login</button></a>
+      <a href="/register"><button type="button" class="btn btn-outline-danger">Register</button></a>
     </div>
-    <a href="/frontend/login"><button type="button" class="btn btn-outline-success" style="margin-right: 10px;">Login</button></a>
-    <a href="/frontend/register"><button type="button" class="btn btn-outline-danger">Register</button></a>
+    
 
     <!-- Right navbar links -->
   </nav>
+  <hr>
+</div>
   <!-- /.navbar -->
 
-  <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <div class="brand-link">
-      <img src='{{ asset("template/dist/img/icon-gaji.jpg") }}' alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">RECRUITMENT</span>
-    </div>
-
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src='{{ asset("template/dist/img/AdminLTELogo.png") }}' class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="/" class="d-block">No user</a>
-        </div>
-      </div>
-
-      <!-- SidebarSearch Form -->
-      <div class="form-inline">
-        <div class="input-group" data-widget="sidebar-search">
-          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-sidebar">
-              <i class="fas fa-search fa-fw"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Sidebar Menu -->
-      
-      <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
-  </aside>
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div>
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-            <h1 style="margin: 10% 0 0 25%; font-size:75pt;">RECRUITMENT</h1>
+            <h1 style="margin: 10% 0 0 25%; font:80pt Arial; font-weight:600;">RECRUITMEN<sup>&reg;</sup></h1>
+            <h1 style="margin-left:50%">Executive Search</h1>
             <!-- /.col -->
           <!-- /.col -->
         </div><!-- /.row -->
+        <footer class="footer-distributed">
+          
+          <div class="footer-left">
+            <hr>
+    
+            <p class="footer-links">
+              <a href="#">Home</a>
+              |
+              <a href="#">Blog</a>
+              |
+              <a href="#">About</a>
+              |
+              <a href="#">Contact</a>
+            </p>
+    
+            <p class="footer-company-name">© 2023 Education20SI Ltd.</p>
+          </div>
+    
+          <div class="footer-center">
+            <div>
+              <i class="fas fa-location-arrow"></i> <span>UPH Medan</span>
+                <p><span>Jln. Imam Bonjol No. 5 Medan Petisah, Petisah Tengah, 20112</span></p>
+            </div>
+    
+            <div>
+              <i class="fa fa-phone"></i> <span>Carlos</span>
+              <p>+62 852-6155-7426</p>
+            </div>
+            <div>
+              <i class="fa fa-envelope"></i> <span>Email</span>
+              <p><a href="https://carloskhu19@gmail.com">carloskhu19@gmail.com</a></p>
+            </div>
+          </div>
+          <div class="footer-right">
+            <p class="footer-company-about">
+              <span>About the company</span>
+              We offer training and skill building courses across Technology, Design, Management, Science and Humanities.</p>
+            <div class="footer-icons">
+              <a href="#"><i class="fab fa-facebook"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+        </footer>
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
@@ -175,5 +155,6 @@
 <script src='{{ asset("template/dist/js/adminlte.js") }}'></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src='{{ asset("template/dist/js/pages/dashboard.js") }}'></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
 </html>

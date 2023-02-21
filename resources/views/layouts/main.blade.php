@@ -56,7 +56,7 @@
     <div style="margin: 0 0 0 55%;">
     <ul class="navbar-nav">
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="/home" class="nav-link">Home</a>
+        <a href="/" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="/about" class="nav-link">About</a>

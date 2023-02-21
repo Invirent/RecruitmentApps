@@ -9,40 +9,38 @@
                 </p>
             </a>
         </li>';
-
-        $Quiz_Menu = '
+        $Quizzes_Menu = '
         <li class="nav-item">
-            <a href="/admin/quiz-template" class="nav-link">
-                <i class="nav-icon fas fa-user-alt"></i>
+            <a href="/admin/quizzes" class="nav-link">
+                <i class="nav-icon fas fa-pencil-alt"></i>
                 <p>
-                Quiz Template
+                Quiz
                 </p>
             </a>
         </li>';
-
-        $Jobs_Menu = '
+        $Quiz_Answer_Menu = '
         <li class="nav-item">
-            <a href="/admin/jobs" class="nav-link">
-                <i class="nav-icon fas fa-user-alt"></i>
+            <a href="/admin/quiz-answer" class="nav-link">
+                <i class="nav-icon fas fa-book-open"></i>
                 <p>
-                Jobs
+                Quiz Answer
                 </p>
             </a>
         </li>';
-
-        $Candidate_Menu = '
+        $Candidates_Menu = '
         <li class="nav-item">
             <a href="/admin/candidates" class="nav-link">
-                <i class="nav-icon fas fa-user-alt"></i>
+                <i class="nav-icon fas fa-users"></i>
                 <p>
-                Candidates
+                Candidate
                 </p>
             </a>
         </li>';
 
         echo $User_Menu;
-        echo $Quiz_Menu;
-        echo $Jobs_Menu;
-        echo $Candidate_Menu;
+        echo $Candidates_Menu;
+        echo $Quizzes_Menu;
+        echo $Quiz_Answer_Menu;
     ?>
+
 </ul>

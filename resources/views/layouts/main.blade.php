@@ -53,32 +53,10 @@
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
-    <div style="margin: 0 0 0 55%;">
-    <ul class="navbar-nav">
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="/" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="/about" class="nav-link">About</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="/company" class="nav-link">Company</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="/jobs" class="nav-link">Jobs</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="/blog" class="nav-link">Blog</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="/news" class="nav-link">News</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="/admin/quiz-template" class="nav-link">Quiz Template</a>
-      </li>
-    </ul>
+    <div style="margin: 0 0 0 90%;">
+      <a href="/"><button type="button" class="btn btn-outline-danger" style="margin-right: 10px;">Log out</button></a>
+    
     </div>
-    <a href="/"><button type="button" class="btn btn-outline-danger" style="margin-right: 10px;">Log out</button></a>
 
     <!-- Right navbar links -->
   </nav>

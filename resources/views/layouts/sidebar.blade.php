@@ -18,12 +18,12 @@
                 </p>
             </a>
         </li>';
-        $Quiz_Answer_Menu = '
+        $Jobs_Menu = '
         <li class="nav-item">
-            <a href="/admin/quiz-answer" class="nav-link">
-                <i class="nav-icon fas fa-book-open"></i>
+            <a href="/admin/jobs" class="nav-link">
+                <i class="nav-icon fas fa-user-tie"></i>
                 <p>
-                Quiz Answer
+                Jobs
                 </p>
             </a>
         </li>';
@@ -39,6 +39,7 @@
 
         echo $User_Menu;
         echo $Candidates_Menu;
+        echo $Jobs_Menu;
         echo $Quizzes_Menu;
     ?>
 

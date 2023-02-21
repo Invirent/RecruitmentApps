@@ -11,10 +11,10 @@
         </li>';
         $Quizzes_Menu = '
         <li class="nav-item">
-            <a href="/admin/quizzes" class="nav-link">
+            <a href="/admin/quiz-template" class="nav-link">
                 <i class="nav-icon fas fa-pencil-alt"></i>
                 <p>
-                Quiz
+                Quiz Template
                 </p>
             </a>
         </li>';
@@ -40,7 +40,6 @@
         echo $User_Menu;
         echo $Candidates_Menu;
         echo $Quizzes_Menu;
-        echo $Quiz_Answer_Menu;
     ?>
 
 </ul>

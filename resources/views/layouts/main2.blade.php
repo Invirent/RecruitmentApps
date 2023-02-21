@@ -1,3 +1,4 @@
+
 <?php
 
   use App\Models\User;
@@ -9,7 +10,7 @@
   //   exit();
   // }
 ?>
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -156,5 +157,73 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src='{{ asset("template/dist/js/pages/dashboard.js") }}'></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+</html> --}}
+
+<!DOCTYPE html>
+<html>
+  <head>
+  <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Martel+Sans&display=swap" rel="stylesheet" />
+  <link href="./css/main.css" rel="stylesheet" />
+  {{-- !-- Google Font: Source Sans Pro --> --}}
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Ionicons -->  
+  <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href='{{ asset("template/plugins/fontawesome-free/css/all.min.css") }}'>
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+  <title>Home
+  </title>
+</head>
+<body>
+  <div class="v1_2">
+  <span class="v1_3">Home
+  </span>
+  <span class="v1_4">About
+  </span>
+  <span class="v1_5">Company
+  </span>
+  <span class="v1_6">Jobs
+  </span>
+  <span class="v1_7">Clients
+  </span>
+  <span class="v1_8">Blog
+  </span>
+  <span class="v1_9">News
+  </span>
+  {{-- <div class="v1_11">
+  </div> --}}
+  <div class ="v1_10">
+    <a href="/login"><button type="button" class="btn btn-outline-success" style="margin-right: 10px;">Login</button></a>
+  </div>
+  <div class="v1_11">
+    <a href="/register"><button type="button" class="btn btn-outline-danger">Register</button></a>
+  </div>
+  </div>
+
+  {{-- <div class="v1_13">
+  </div> --}}
+  <span class="v1_14">RECRUITMEN
+  </span>
+  <span class="v1_15">Executive Search
+  </span>
+  <div class="v1_16">
+  </div>
+  <div class="v1_17">
+  </div>
+  <div class="v1_18">
+  </div>
+  {{-- <div class="name">
+  </div> --}}
+  {{-- <div class="name">
+  </div> --}}
+</div>
 </body>
 </html>

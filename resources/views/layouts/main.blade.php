@@ -1,6 +1,7 @@
 <?php
   use Illuminate\Support\Facades\DB;
     $UserData = DB::table('users')->get();
+    $CompanyData = DB::table('companies')->get();
 
     $count = count($UserData);
   if ($count == 0){
@@ -12,6 +13,31 @@
     header('Location: /login');
     exit();
   }
+
+  if (count($CompanyData) == 0){
+    header('Location: /admin/company/create');
+    exit();
+  }
+
+  foreach($CompanyData as $Company){
+    $CompanyData = $Company;
+    break;
+  };
+
+  $logo = asset('storage/'.$CompanyData->company_logo);
+  $favicon = asset('storage/'.$CompanyData->favicon);
+
+
+  if (!isset($logo) || $logo == null){
+    $logo = asset('template/dist/img/icon-gaji.jpg');
+  }
+
+  if (!isset($favicon) || $favicon == null){
+    $favicon = asset('template/dist/img/icon-gaji.jpg');
+  }
+
+  $current_user = $_SESSION['user']->name;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +45,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>@yield('title')</title>
+
+  <link rel="icon" href='{{ $favicon }}' type="image/x-icon"/>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -66,8 +94,8 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <div class="brand-link">
-      <img src='{{ asset("template/dist/img/icon-gaji.jpg") }}' alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">RECRUTIMENT</span>
+      <img src='{{ $logo }}' alt="Company" class="brand-image img-circle elevation-3" style="background-color : white;">
+      <span class="brand-text font-weight-light">RECRUITMENT</span>
     </div>
 
     <!-- Sidebar -->
@@ -78,7 +106,7 @@
           <img src='{{ asset("template/dist/img/Logo_UPH.gif") }}' class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a class="d-block">KELOMPOK 3</a>
+          <a class="d-block">{{ $current_user }}</a>
         </div>
       </div>
 

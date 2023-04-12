@@ -111,3 +111,5 @@ Route::get("/candidate", function(){
 Route::post("/candidate/store", function(Request $request){
     return CandidatesController::storeAnswer($request);
 }) ;
+
+Route::resource('admin/company', 'App\\Http\\Controllers\\Admin\CompanyController');

@@ -335,7 +335,7 @@ body {
   color: rgba(0,0,0,1);
   position: absolute;
   top: 395px;
-  left: 290px;
+  left: 20%;
   font-family: Martel Sans;
   font-weight: Bold;
   font-size: 128px;

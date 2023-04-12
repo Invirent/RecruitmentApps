@@ -1,5 +1,7 @@
 <?php
     use Illuminate\Support\Facades\DB;
+    $CompanyData = DB::table('companies')->get();
+
     $access_key = $_GET['access_key'];
     $candidate = DB::table('candidates')->get()->where('access_key', $access_key)->first();
     $CandidateQuiz = DB::select('
@@ -26,6 +28,17 @@
         exit();
     }
 
+    foreach($CompanyData as $Company){
+      $CompanyData = $Company;
+      break;
+    };
+
+    $logo = asset('storage/'.$CompanyData->company_logo);
+
+    if (!isset($logo) || $logo == null){
+      $logo = asset('template/dist/img/icon-gaji.jpg');
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -39,8 +52,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <title>Form</title>
     <style>
-        .container-fluid{
-          margin-top: 100px;
+        .form-page-head{
+          margin-top: 50px;
         }
 
         .border{
@@ -63,7 +76,14 @@
     </style>
 </head>
 <body>
-    <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0f7bb1;">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="{{ $logo }}" class="img-fluid" alt="logo" style="height: 100px;">
+        </a>
+      </div>
+    </nav>
+    <div class="container-fluid form-page-head">
         <div class="row mx-0 justify-content-center">
           <div class="col-md-7 col-lg-5 px-lg-2 col-xl-4 px-xl-0 px-xxl-3 ">
             <div class="form-page">

@@ -1,3 +1,14 @@
+<?php
+    if ($_SESSION['user']->id == 1){
+        $admin_user = True;
+    }
+    else{
+        $admin_user = False;
+    }
+
+    $current_id = $_SESSION['user']['id'];
+?>
+
 @extends('layouts.main')
 
 @section('container')
@@ -5,7 +16,7 @@
         <div class="row">
             
 
-            <div class="col-md-9">
+            <div class="col-md">
                 <div class="card">
                     <div class="card-header">Users</div>
                     <div class="card-body">
@@ -35,6 +46,7 @@
                                 </thead>
                                 <tbody>
                                 @foreach($users as $item)
+                                    @if ($admin_user == True || $current_id == $item->id)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->name }}</td><td>{{ $item->email }}</td>
@@ -49,6 +61,7 @@
                                             </form>
                                         </td>
                                     </tr>
+                                    @endif
                                 @endforeach
                                 </tbody>
                             </table>

@@ -72,9 +72,6 @@ Route::get("/register/create", function(){
 Route::get('/', function () {
     return view('layouts.main');
 });
-Route::get('/', function () {
-    return view('layouts.main2');
-});
 
 Route::get('/admin/users', function () {
     return view('admin.users');
@@ -111,3 +108,5 @@ Route::get("/candidate", function(){
 Route::post("/candidate/store", function(Request $request){
     return CandidatesController::storeAnswer($request);
 }) ;
+
+Route::resource('admin/company', 'App\\Http\\Controllers\\Admin\CompanyController');

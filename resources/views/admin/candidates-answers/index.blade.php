@@ -5,7 +5,7 @@
         <div class="row">
             
 
-            <div class="col-md-9">
+            <div class="col-md">
                 <div class="card">
                     <div class="card-header">Candidates Answers</div>
                     <div class="card-body">

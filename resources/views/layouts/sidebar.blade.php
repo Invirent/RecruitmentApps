@@ -37,10 +37,25 @@
             </a>
         </li>';
 
+        $Company_Menu = '
+        <li class="nav-item">
+            <a href="/admin/company" class="nav-link">
+                <i class="nav-icon fas fa fa-building"></i>
+                <p>
+                Company
+                </p>
+            </a>
+        </li>';
+
         echo $User_Menu;
         echo $Candidates_Menu;
         echo $Jobs_Menu;
         echo $Quizzes_Menu;
+
+        if (isset($_SESSION['user']) && $_SESSION['user']['id'] == 1) {
+            echo $Company_Menu;
+        }
+
     ?>
 
 </ul>

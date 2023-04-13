@@ -29,16 +29,11 @@
 
 <script>
     function copyLink() {
-    // Get the text field
-    var copyText = document.getElementById("url_value");
-    // Select the text field
-    copyText.select();
-  
-     // Copy the text inside the text field
-    // navigator.clipboard.writeText(copyText.value);
-  
-    // Alert the copied text
-    alert("Please copy the url: \n" + copyText.value);
+        var copyText = document.getElementById("url_value");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(copyText.value);
+        alert("Url Copied: \n" + copyText.value);
   } 
 </script>
 
@@ -47,18 +42,13 @@
 @section('container')
     <div class="container">
         <div class="row">
-            
-
-            <div class="col-md-9">
+            <div class="col-md">
                 <div class="card">
                     <div class="card-header">Candidate {{ $candidate->id }}</div>
                     <div class="card-body">
 
                         <a href="{{ url('/admin/candidates') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <a href="{{ url('/admin/candidates/' . $candidate->id . '/edit') }}" title="Edit Candidate"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
-                        <input type="hidden" id="url_value" value="{{ $url }}">
-                        <button class="btn btn-success btn-sm" onclick="copyLink()"><i class="fa fa-clipboard"></i> Copy URL</button>
-
                         <form method="POST" action="{{ url('admin/candidates' . '/' . $candidate->id) }}" accept-charset="UTF-8" style="display:inline">
                             {{ method_field('DELETE') }}
                             {{ csrf_field() }}
@@ -100,6 +90,13 @@
                                             @foreach($jobs as $job)
                                                 {{ $job->job_name }}
                                             @endforeach
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th> URL </th>
+                                        <td>
+                                            <input type="text" id="url_value" value="{{ $url }}" readonly> 
+                                            <button class="btn btn-success btn-sm" onclick="copyLink()"><i class="fa fa-clipboard"></i> Copy URL</button>
                                         </td>
                                     </tr>
                                 </tbody>

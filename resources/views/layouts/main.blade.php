@@ -23,8 +23,8 @@
   $favicon = null;
 
   if (isset($CompanyData->company_logo) && $CompanyData->company_logo != null){
-    $logo = asset('storage/'.$CompanyData->company_logo);
-    $favicon = asset('storage/'.$CompanyData->favicon);
+    $logo = asset($CompanyData->company_logo);
+    $favicon = asset($CompanyData->favicon);
   }
 
   if (!isset($logo) || $logo == null){

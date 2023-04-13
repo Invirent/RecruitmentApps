@@ -1,3 +1,8 @@
+<?php
+    use Illuminate\Support\Facades\DB;
+    $template = DB::table('quiz_templates')->where('id', $job->default_template_id)->first();
+?>
+
 @extends('layouts.main')
 
 @section('container')
@@ -5,7 +10,7 @@
         <div class="row">
             
 
-            <div class="col-md-9">
+            <div class="col-md">
                 <div class="card">
                     <div class="card-header">Job {{ $job->id }}</div>
                     <div class="card-body">
@@ -27,7 +32,11 @@
                                     <tr>
                                         <th>ID</th><td>{{ $job->id }}</td>
                                     </tr>
-                                    <tr><th> Job Name </th><td> {{ $job->job_name }} </td></tr><tr><th> Default Template Id </th><td> {{ $job->default_template_id }} </td></tr>
+                                    <tr><th> Job Name </th><td> {{ $job->job_name }} </td></tr>
+                                    <tr>
+                                        <th> Default Template </th>
+                                        <td> {{ $template->name }} </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>

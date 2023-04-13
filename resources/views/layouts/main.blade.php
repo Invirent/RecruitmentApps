@@ -14,19 +14,18 @@
     exit();
   }
 
-  if (count($CompanyData) == 0){
-    header('Location: /admin/company/create');
-    exit();
-  }
-
   foreach($CompanyData as $Company){
     $CompanyData = $Company;
     break;
   };
 
-  $logo = asset('storage/'.$CompanyData->company_logo);
-  $favicon = asset('storage/'.$CompanyData->favicon);
+  $logo = null;
+  $favicon = null;
 
+  if (isset($CompanyData->company_logo) && $CompanyData->company_logo != null){
+    $logo = asset('storage/'.$CompanyData->company_logo);
+    $favicon = asset('storage/'.$CompanyData->favicon);
+  }
 
   if (!isset($logo) || $logo == null){
     $logo = asset('template/dist/img/icon-gaji.jpg');

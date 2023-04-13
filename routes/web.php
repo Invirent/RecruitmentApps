@@ -72,9 +72,6 @@ Route::get("/register/create", function(){
 Route::get('/', function () {
     return view('layouts.main');
 });
-Route::get('/', function () {
-    return view('layouts.main2');
-});
 
 Route::get('/admin/users', function () {
     return view('admin.users');

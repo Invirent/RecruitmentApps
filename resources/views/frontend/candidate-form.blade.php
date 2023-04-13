@@ -33,7 +33,11 @@
       break;
     };
 
-    $logo = asset('storage/'.$CompanyData->company_logo);
+    $logo = null;
+
+    if (isset($CompanyData->company_logo) && $CompanyData->company_logo != null){
+      $logo = asset('storage/'.$CompanyData->company_logo);
+    }
 
     if (!isset($logo) || $logo == null){
       $logo = asset('template/dist/img/icon-gaji.jpg');
@@ -79,7 +83,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0f7bb1;">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
-          <img src="{{ $logo }}" class="img-fluid" alt="logo" style="height: 100px;">
+          <img src="{{ $logo }}" class="img-fluid" alt="logo" style="height: 50px;">
         </a>
       </div>
     </nav>
